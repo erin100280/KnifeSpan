@@ -1,0 +1,8 @@
+J:\Projects\KnifeSpan\KnifeSpan\bin\Debug\KnifeSpan.exe
+J:\Projects\KnifeSpan\KnifeSpan\bin\Debug\KnifeSpan.pdb
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\ResolveAssemblyReference.cache
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\KnifeSpan.MainForm.resources
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\GenerateResource.read.1.tlog
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\GenerateResource.write.1.tlog
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\KnifeSpan.exe
+J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Debug\KnifeSpan.pdb
