@@ -4,3 +4,11 @@ J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.MainForm.resources
 J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\GenerateResource.read.1.tlog
 J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\GenerateResource.write.1.tlog
 J:\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.exe
+C:\Dev\Projects\KnifeSpan\KnifeSpan\bin\Release\KnifeSpan.exe
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.forms.AboutForm.resources
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.joinHandler.resources
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.forms.StatusForm.resources
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Dev\Projects\KnifeSpan\KnifeSpan\obj\x86\Release\KnifeSpan.exe

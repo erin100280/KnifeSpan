@@ -125,8 +125,9 @@ namespace KnifeSpan
 			// menuItemMainHelpAbout
 			// 
 			this.menuItemMainHelpAbout.Name = "menuItemMainHelpAbout";
-			this.menuItemMainHelpAbout.Size = new System.Drawing.Size(114, 22);
+			this.menuItemMainHelpAbout.Size = new System.Drawing.Size(152, 22);
 			this.menuItemMainHelpAbout.Text = "&About";
+			this.menuItemMainHelpAbout.Click += new System.EventHandler(this.MenuItemMainHelpAboutClick);
 			// 
 			// tabControlMain
 			// 
@@ -321,14 +322,14 @@ namespace KnifeSpan
 			this.tabPageMainJoiningModeManual.Location = new System.Drawing.Point(4, 25);
 			this.tabPageMainJoiningModeManual.Name = "tabPageMainJoiningModeManual";
 			this.tabPageMainJoiningModeManual.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageMainJoiningModeManual.Size = new System.Drawing.Size(541, 136);
+			this.tabPageMainJoiningModeManual.Size = new System.Drawing.Size(686, 136);
 			this.tabPageMainJoiningModeManual.TabIndex = 1;
 			this.tabPageMainJoiningModeManual.Text = "Manual";
 			// 
 			// buttonMainJoiningModeManualJoinnow
 			// 
 			this.buttonMainJoiningModeManualJoinnow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonMainJoiningModeManualJoinnow.Location = new System.Drawing.Point(459, 104);
+			this.buttonMainJoiningModeManualJoinnow.Location = new System.Drawing.Point(604, 104);
 			this.buttonMainJoiningModeManualJoinnow.Name = "buttonMainJoiningModeManualJoinnow";
 			this.buttonMainJoiningModeManualJoinnow.Size = new System.Drawing.Size(76, 26);
 			this.buttonMainJoiningModeManualJoinnow.TabIndex = 6;
@@ -340,7 +341,7 @@ namespace KnifeSpan
 			// 
 			this.buttonMainJoiningModeManualBrowseoutputfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonMainJoiningModeManualBrowseoutputfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.buttonMainJoiningModeManualBrowseoutputfile.Location = new System.Drawing.Point(497, 50);
+			this.buttonMainJoiningModeManualBrowseoutputfile.Location = new System.Drawing.Point(642, 50);
 			this.buttonMainJoiningModeManualBrowseoutputfile.Name = "buttonMainJoiningModeManualBrowseoutputfile";
 			this.buttonMainJoiningModeManualBrowseoutputfile.Size = new System.Drawing.Size(38, 20);
 			this.buttonMainJoiningModeManualBrowseoutputfile.TabIndex = 5;
@@ -355,7 +356,7 @@ namespace KnifeSpan
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxMainJoiningModeManualOutputfile.Location = new System.Drawing.Point(112, 50);
 			this.textBoxMainJoiningModeManualOutputfile.Name = "textBoxMainJoiningModeManualOutputfile";
-			this.textBoxMainJoiningModeManualOutputfile.Size = new System.Drawing.Size(379, 20);
+			this.textBoxMainJoiningModeManualOutputfile.Size = new System.Drawing.Size(524, 20);
 			this.textBoxMainJoiningModeManualOutputfile.TabIndex = 4;
 			// 
 			// labelMainJoiningModeManualOutputfile
@@ -371,7 +372,7 @@ namespace KnifeSpan
 			// 
 			this.buttonMainJoiningModeManualBrowseinputchunk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonMainJoiningModeManualBrowseinputchunk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.buttonMainJoiningModeManualBrowseinputchunk.Location = new System.Drawing.Point(497, 24);
+			this.buttonMainJoiningModeManualBrowseinputchunk.Location = new System.Drawing.Point(642, 24);
 			this.buttonMainJoiningModeManualBrowseinputchunk.Name = "buttonMainJoiningModeManualBrowseinputchunk";
 			this.buttonMainJoiningModeManualBrowseinputchunk.Size = new System.Drawing.Size(38, 20);
 			this.buttonMainJoiningModeManualBrowseinputchunk.TabIndex = 2;
@@ -386,7 +387,7 @@ namespace KnifeSpan
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxMainJoiningModeManualInputchunk.Location = new System.Drawing.Point(112, 24);
 			this.textBoxMainJoiningModeManualInputchunk.Name = "textBoxMainJoiningModeManualInputchunk";
-			this.textBoxMainJoiningModeManualInputchunk.Size = new System.Drawing.Size(379, 20);
+			this.textBoxMainJoiningModeManualInputchunk.Size = new System.Drawing.Size(524, 20);
 			this.textBoxMainJoiningModeManualInputchunk.TabIndex = 1;
 			// 
 			// labelMainJoiningModeManualInputchunk
@@ -457,7 +458,7 @@ namespace KnifeSpan
 		private System.Windows.Forms.Button buttonMainSplittingBrowseoutputdir;
 		private System.Windows.Forms.Button buttonMainSplittingSplitNow;
 		private System.Windows.Forms.TabPage tabPageMainSplitting;
-		private System.Windows.Forms.TabControl tabControlMain;
+		public System.Windows.Forms.TabControl tabControlMain;
 		private System.Windows.Forms.ToolStripMenuItem menuItemMainHelpAbout;
 		private System.Windows.Forms.ToolStripMenuItem menuItemMainFileExit;
 		private System.Windows.Forms.ToolStripSeparator menuSeparatorMainFile01;

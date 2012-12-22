@@ -10,43 +10,90 @@ public class KsSplitter {
 
 	public static void SplitFile(string inputFile, string outputDir, long chunkSizeInBytes) {
 		FileInfo fi=new FileInfo(inputFile);
-		SplitFile(inputFile, outputDir, fi.Name, chunkSizeInBytes);
+		SplitFile(inputFile, outputDir, fi.Name, chunkSizeInBytes, new KsSplitJoinHandler());
 	}
 	public static void SplitFile(string inputFile, string outputDir, string outputPrefix, long chunkSize, chunkSizeType chunkSizeTyp) {
-		SplitFile(inputFile, outputDir, outputPrefix, GetSizeInBytes(chunkSize, chunkSizeTyp));
+		SplitFile(inputFile, outputDir, outputPrefix, GetSizeInBytes(chunkSize, chunkSizeTyp), new KsSplitJoinHandler());
 	}
 	public static void SplitFile(string inputFile, string outputDir, long chunkSize, chunkSizeType chunkSizeTyp) {
 		FileInfo fi=new FileInfo(inputFile);
-		SplitFile(inputFile, outputDir, fi.Name, GetSizeInBytes(chunkSize, chunkSizeTyp));
+		SplitFile(inputFile, outputDir, fi.Name, GetSizeInBytes(chunkSize, chunkSizeTyp), new KsSplitJoinHandler());
+	}
+	public static void SplitFile(string inputFile, string outputDir, long chunkSizeInBytes, KsSplitJoinHandler handler) {
+		FileInfo fi=new FileInfo(inputFile);
+		SplitFile(inputFile, outputDir, fi.Name, chunkSizeInBytes, handler);
+	}
+	public static void SplitFile(string inputFile, string outputDir, string outputPrefix, long chunkSize, chunkSizeType chunkSizeTyp, KsSplitJoinHandler handler) {
+		SplitFile(inputFile, outputDir, outputPrefix, GetSizeInBytes(chunkSize, chunkSizeTyp), handler);
+	}
+	public static void SplitFile(string inputFile, string outputDir, long chunkSize, chunkSizeType chunkSizeTyp, KsSplitJoinHandler handler) {
+		FileInfo fi=new FileInfo(inputFile);
+		SplitFile(inputFile, outputDir, fi.Name, GetSizeInBytes(chunkSize, chunkSizeTyp), handler);
 	}
 	public static void SplitFile(string inputFile, string outputDir, string outputPrefix, long chunkSizeInBytes) {
+		SplitFile(inputFile, outputDir, outputPrefix, chunkSizeInBytes, new KsSplitJoinHandler());
+	}
+	public static void SplitFile(string inputFile, string outputDir, string outputPrefix, long chunkSizeInBytes, KsSplitJoinHandler handler) {
+		string outputFile="";
 		if(!outputDir.EndsWith("\\")) outputDir+="\\";
+
 		FileInfo fInfo=new FileInfo(inputFile);
-		long iLen=fInfo.Length, pos=0, len, cnt=0;
+		long i, iLen=fInfo.Length, pos=0, len, cnt=0, cnt2, rwIncrament=500000;
 		FileStream ifs=new FileStream(inputFile, FileMode.Open, FileAccess.Read);
 		BinaryReader reader=new BinaryReader(ifs);
+		
 		while (pos<iLen) {
 			cnt++;
-			FileStream ofs=new FileStream(outputDir+outputPrefix+".ksChunk"+cnt.ToString().PadLeft(3, '0'), FileMode.Create);
+			outputFile=outputDir+outputPrefix+".ksChunk"+cnt.ToString().PadLeft(3, '0');
+			FileStream ofs=new FileStream(outputFile, FileMode.Create);
 			BinaryWriter writer=new BinaryWriter(ofs);
 			len=chunkSizeInBytes;
 			if(pos<1) len-=200;
 			if((pos+len)>iLen) len=(iLen-pos);
 			
-			for(long i=0, l=len; i<l; i++) {
-				writer.Write(reader.ReadByte());
-				pos++;
-			};
+			i=0;
+			while(i<len) {
+				cnt2=rwIncrament;
+				if((i+cnt2)>=len) cnt2=len-i;
+				writer.Write(reader.ReadBytes((int)cnt2));
+				i+=cnt2;
+				pos+=cnt2;
+				if(!handler.OnUpdate(inputFile, outputFile, pos, iLen)) {
+					reader.Close(); ifs.Close();
+					writer.Close(); ofs.Close();
+					handler.OnCanceled(inputFile, outputFile, pos, iLen);
+					return;
+				}
+			}
+			
 			writer.Close();
 			ofs.Close();
+			if(!handler.OnUpdate(inputFile, outputFile, pos, iLen)) {
+				reader.Close(); ifs.Close();
+				handler.OnCanceled(inputFile, outputFile, pos, iLen);
+				return;
+			}
 			
 		}
 	
-		reader.Close();
-		ifs.Close();
-		
+		reader.Close(); ifs.Close();
+		SaveAutoJoinFile(outputDir+outputPrefix+".ksAutoJoin", (int)cnt, (int)iLen);
+
+		handler.OnFinished(inputFile, outputFile, pos, iLen);
 	}
 
+	public static void SaveAutoJoinFile(string outputFile, int chunkCount, int len) {
+		FileMode fm=FileMode.Create;
+		FileInfo finfo=new FileInfo(outputFile);
+		if(finfo.Exists) fm=FileMode.Truncate;
+		FileStream oofs=new FileStream(outputFile, fm);
+		StreamWriter wwriter=new StreamWriter(oofs);
+		wwriter.WriteLine(chunkCount);
+		wwriter.WriteLine(len);
+		wwriter.WriteLine(finfo.Name.Substring(0, finfo.Name.Length-finfo.Extension.Length));
+		wwriter.Close(); oofs.Close();
+	}
+	
 	public static long GetSizeInBytes(long val, string sizeType) {
 		switch(sizeType) {
 			case "kb": val*=1000; break;
